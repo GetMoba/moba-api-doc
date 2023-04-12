@@ -37,18 +37,24 @@ The following table lists the available `attributes`:
 | Maximal speed     | string | 144 km/h       | Maximal speed in km/h or mile/h                                                                                                                                                          |
 | fullPackCapacity                      | string          | 40 kWh                                   | Full pack capacity when new in kWh |
 | Usefull capacity        | string       | 38,40 kWh                                    | Usefull capacity when new in kWh                                                                                                                                                              |
-| dc_charging_curve.power                | Float         | 200.0                                  | power level at the given percentage in kW                                                                                                                                                                                           |
-| dc_default_charging_curve              | Boolean       | false                                  | `true` if the charging curve is based on the default curve instead of real measured data.                                                                                                                                           |
-| energy_consumption.average_consumption | Float         | 15.4                                   | in kWh/100km. Usually the WLTP value.                                                                                                                                                                                               |
-| dc_charge_ports                        | Array<String> | ["ccs","tesla_ccs"]                    | All DC charge ports, that the vehicle is capable to charge with. Possible values: `ccs`, `chademo`                                                                                                                                  |
-
+| AC Charging Power (max)               | stirng         | 6,6 kW                                 | AC charging power (max) in kW                                                                                                                                                   |
+| DC Charging Power (max)              | string       | 50 kW                                  | DC charging power (max) in kW                                                                                                                                           |
+|AC Charging Type | string    | Quick Charge Port  | AC charging connector type                                                                                                                                                           |
+| DC Charging Type      | string| CHAdeMO connector                   | DC charging connector type                                                                                                                                  |
+|AC Charge range | string    | 0% - 100%                                  | AC charge range in %                                                                                                                                                           |
+|DC Charge Range | string    | 20% - 80%                                   | DC charge range in %                                                                                                                                                           |
+|AC Charge time | string    | 7h30                                   | AC charge time in h                                                                                                                                                           |
+|DC Charge time | string    | 1h00                                   |DC Charging time in h                                                                                                                                                          |
+|Vehicule consumption | string    | 148 Wh/km                                  |Vehicule consumption Wh/km or Wh/mile                                                                                                                                                          |
+|OEM range | string    |378 km                                  |OEM range in km / mile                                                                                                                                                          |
+| NEDC/WLTP | string    | NEDC                                   |OEM Driving cycle standard                                                                                                                                                          |
 
 ## Example
 
 ### Request
 
 ```http
-GET http://localhost:8888/miner/api.php?action=getBible&VIN=SJNFAAZE1U0077476
+GET http://api.app-moba.com/miner/api.php?action=getBible&VIN=SJNFAAZE1U0077476
 Api-Key: my-secret-key
 ```
 
@@ -60,12 +66,6 @@ Body:
 ```json
 {
     "diag": {
-        "UID": "c89d19c22196c04f643e07bbd1595d4c",
-        "time": 1613027290,
-        "canbus": "Nissan Leaf (40 kWh)",
-        "cmd": "@LBB",
-        "rented": "No",
-        "dongle": "BFP_00000026",
         "VIN": "SJNFAAZE1U0077476",
         "BatteryAmps": -0.24,
         "soh": 97,
@@ -82,7 +82,6 @@ Body:
         "l0l1l2": 42,
         "vcells": "0",
         "tc1": 6,
-        "tc2": "??",
         "tc3": 255,
         "tc4": 4,
         "tc5": 4,
@@ -93,22 +92,13 @@ Body:
         "link": "http://127.0.0.1:8888/miner/_connector/certificates/99fe5387ff.pdf",
         "version": "24 kWh",
         "date_immat": "20190927",
-        "entity": "143",
         "modele": "NISSAN|LEAF (24 / 30 kWh)",
         "QuickCh": 1,
         "NormalCh": 42,
-        "scoreLBB": false,
-        "capacityah": null,
-        "bmsv1": null,
-        "bmsv2": null,
-        "bmsserial": null,
         "re_BMS": "Yes",
-        "kw": 0,
-        "guarantee_V2": "5 years - 62 000 km",
+        "guarantee_V2": "5 years - 100 000 km",
         "guarantee_V2_year": 5,
         "guarantee_V2_km": 100000,
-        "newmodel": "NISSAN LEAF 24 KWH",
-        "VehiculeID": "Nis_Leaf_24kw_8",
         "tauxdecharge": "2%",
         "name": "Nissan Leaf 24 kWh"
     },
@@ -124,14 +114,17 @@ Body:
         "usefulCapacity": "24",
         "acChargingPower": "6,6",
         "dcChargingPower": "50",
-        "acChargeRange": "0% - 100%",
+        "acChargeRangeLow": "0%",
+        "acChargeRangeHigh": "100%",
         "acChargeTime": "4h00",
-        "dcChargeRange": "0% - 80%",
+        "dcChargeRangeLow": "0%",
+        "dcChargeRangeHigh": "80%",
         "dcChargeTime": "0h30",
         "vehicleConsumption": "173",
         "oemRange": "190",
         "wltp/nedc": "NEDC"
     }
+}
 }
 ```
 
