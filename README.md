@@ -89,7 +89,7 @@ Body:
         "shunt2": "ffffffff",
         "shunt3": "0",
         "range": 63,
-        "link": "http://127.0.0.1:8888/miner/_connector/certificates/99fe5387ff.pdf",
+        "link": "https://certificate.get-moba.com/certificates/c7acd7169b4.pdf",
         "version": "24 kWh",
         "date_immat": "20190927",
         "modele": "NISSAN|LEAF (24 / 30 kWh)",
